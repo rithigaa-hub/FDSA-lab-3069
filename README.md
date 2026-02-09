@@ -1,1 +1,6 @@
-# FDSA-EX4
+# FDSA – EXPERIMENT 4
+
+Python programs for Experiment No: 4 (A–J).
+
+
+
