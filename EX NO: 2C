@@ -1,0 +1,27 @@
+import pandas as pd
+
+data = {'Name':['Jai', 'Princi', 'Gaurav', 'Anuj'],
+        'Age':[27, 24, 22, 32],
+        'Address':['Delhi', 'Kanpur', 'Allahabad', 'Kannauj'],
+        'Qualification':['Msc', 'MA', 'MCA', 'Phd']}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+print("\nSelected Columns:")
+print(df[['Name', 'Qualification']])
+
+output
+     Name  Age    Address Qualification
+0     Jai   27      Delhi           Msc
+1  Princi   24     Kanpur            MA
+2  Gaurav   22  Allahabad           MCA
+3    Anuj   32    Kannauj           Phd
+
+Selected Columns:
+     Name Qualification
+0     Jai           Msc
+1  Princi            MA
+2  Gaurav           MCA
+3    Anuj           Phd
