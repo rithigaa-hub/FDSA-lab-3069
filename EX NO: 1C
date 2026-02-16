@@ -1,0 +1,33 @@
+import numpy as np
+
+a = np.array([[1,2,3],
+              [3,4,5],
+              [4,5,6]])
+
+print("Our array is:")
+print(a)
+
+print("The items in the second column are:")
+print(a[...,1])
+
+print("\nThe items in the second row are:")
+print(a[1,...])
+
+print("\nThe items column 1 onwards are:")
+print(a[...,1:])
+
+output
+Our array is:
+[[1 2 3]
+ [3 4 5]
+ [4 5 6]]
+The items in the second column are:
+[2 4 5]
+
+The items in the second row are:
+[3 4 5]
+
+The items column 1 onwards are:
+[[2 3]
+ [4 5]
+ [5 6]]
