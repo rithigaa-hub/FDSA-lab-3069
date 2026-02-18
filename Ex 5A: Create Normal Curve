@@ -1,0 +1,17 @@
+from scipy.stats import norm
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sb
+
+# Define the range for the x-axis
+data = np.arange(1, 10, 0.01)
+
+# Generate the probability density function (PDF)
+# loc is mean, scale is standard deviation
+pdf = norm.pdf(data, loc=5.3, scale=1)
+
+sb.set_style('whitegrid')
+sb.lineplot(x=data, y=pdf, color='black') # Added x= and y= for modern seaborn compatibility
+plt.xlabel('Heights')
+plt.ylabel('Probability Density')
+plt.show()
