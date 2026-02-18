@@ -1,0 +1,24 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Data definition
+y = pd.Series([1, 2, 3, 4, 3, 5, 4])
+x = pd.Series([1, 2, 3, 4, 5, 6, 7])
+
+# Correlation calculation
+correlation = y.corr(x)
+print(f"Correlation: {correlation}")
+
+# Plotting
+plt.scatter(x, y, label='Data points')
+# Fit the best line
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(np.unique(x), p(np.unique(x)), color='red', label='Best fit line')
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title(f'Scatter Plot with Best Fit Line (Correlation: {correlation:.4f})')
+plt.legend()
+plt.savefig('scatter_best_fit.png')
