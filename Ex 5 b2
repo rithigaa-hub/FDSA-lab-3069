@@ -1,0 +1,16 @@
+mport numpy as np
+import matplotlib.pyplot as plt
+
+# Data preparation
+x = np.arange(50)
+y = x + np.random.randint(0, 30, 50)
+
+# Styling and plot generation
+plt.rcParams.update({'figure.figsize':(10, 8), 'figure.dpi': 100})
+plt.scatter(x, y, c=y, cmap='Spectral')
+plt.colorbar(label='Y - value')
+
+plt.title('Simple Scatter plot')
+plt.xlabel('X - value')
+plt.ylabel('Y - value')
+plt.show()
