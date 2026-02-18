@@ -1,0 +1,17 @@
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Reshaping x is required as sklearn expects a 2D array for features
+x = np.array([5, 15, 25, 35, 45, 55]).reshape((-1, 1))
+y = np.array([5, 20, 14, 32, 22, 38])
+
+# Fit the model
+model = LinearRegression().fit(x, y)
+
+# Get metrics
+r_sq = model.score(x, y)
+print('coefficient of determination:', r_sq)
+
+# Predict results
+y_pred = model.predict(x)
+print('predicted response:', y_pred)
