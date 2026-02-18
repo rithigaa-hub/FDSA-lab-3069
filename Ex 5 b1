@@ -1,0 +1,13 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array(range(50))
+# Adding the random noise to the array
+y = x + np.random.randint(0, 30, 50)
+
+plt.rcParams.update({'figure.figsize':(10,8), 'figure.dpi':100})
+plt.scatter(x, y)
+plt.title('Simple Scatter plot')
+plt.xlabel('X - value')
+plt.ylabel('Y - value')
+plt.show()
