@@ -1,0 +1,25 @@
+import math
+import numpy as np
+from numpy.random import randn
+from statsmodels.stats.weightstats import ztest
+
+mean_iq = 110
+sd_iq = 15 / math.sqrt(50)   
+alpha = 0.05
+null_mean = 100
+
+
+data = sd_iq * randn(50) + mean_iq
+
+print('mean = %.2f stdv = %.2f' % (np.mean(data), np.std(data)))
+
+ztest_score, p_value = ztest(data, value=null_mean, alternative='larger')
+
+print("Z-score =", ztest_score)
+print("P-value =", p_value)
+
+
+if p_value < alpha:
+    print("Reject Null Hypothesis")
+else:
+    print("Fail to Reject Null Hypothesis")
