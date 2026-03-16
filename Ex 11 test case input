@@ -1,0 +1,54 @@
+import numpy as np
+import pandas as pd
+import seaborn as sb
+import matplotlib.pyplot as plt
+from sklearn import preprocessing
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+
+url = "https://raw.githubusercontent.com/BigDataGal/Python-for-Data-Science/master/titanic-train.csv"
+
+titanic = pd.read_csv(url)
+
+titanic.columns = ['PassengerId','Survived','Pclass','Name','Sex','Age','SibSp','Parch','Ticket','Fare','Cabin','Embarked']
+
+print("First 5 rows:\n")
+print(titanic.head())
+
+sb.countplot(x='Survived', data=titanic, palette='hls')
+plt.title("Survival Count")
+plt.show()
+
+print("\nMissing values:\n")
+print(titanic.isnull().sum())
+
+titanic['Age'].fillna(titanic['Age'].mean(), inplace=True)
+titanic['Embarked'].fillna(titanic['Embarked'].mode()[0], inplace=True)
+
+titanic.drop(['Cabin','Name','Ticket','PassengerId'], axis=1, inplace=True)
+
+label_encoder = preprocessing.LabelEncoder()
+
+titanic['Sex'] = label_encoder.fit_transform(titanic['Sex'])
+titanic['Embarked'] = label_encoder.fit_transform(titanic['Embarked'])
+
+X = titanic[['Pclass','Sex','Age','SibSp','Parch','Fare','Embarked']]
+y = titanic['Survived']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=10)
+
+print("\nTraining size:", len(X_train))
+print("Testing size:", len(X_test))
+
+model = LogisticRegression(max_iter=200)
+
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
+print("\nClassification Report:\n", classification_report(y_test, y_pred))
+
+print("Accuracy Score:", accuracy_score(y_test, y_pred))
